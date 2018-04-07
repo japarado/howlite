@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :profiles
   resources :faculties
   resources :hrs
   devise_for :users
