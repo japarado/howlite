@@ -10,6 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :encrypted_password, null: false, default: ""
 
       #custom fields
+      t.string :name
       t.string :user_type, null: false, default: "FACULTY"
 
       ## Recoverable
