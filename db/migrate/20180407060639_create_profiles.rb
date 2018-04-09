@@ -1,7 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration[5.1]
   def change
     create_table :profiles do |t|
-      t.references :user, foreign_key: true
+      t.belongs_to :user, index: true
       t.string :picture
       t.string :description
       t.date :dob
