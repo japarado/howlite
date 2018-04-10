@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
+  #home
+  root 'pages#home'
+
   resources :profiles
   resources :faculties
   resources :hrs
