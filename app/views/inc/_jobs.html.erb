@@ -1,0 +1,36 @@
+<section class="find-job section">
+  <div class="container">
+    <br/>
+    <div class="row">
+      <h2 class="section-title">Jobs</h2>
+      <div class="job-list col-md-12">
+        <div class="thumb">
+          <a href="#"><img width="100"
+                           src="/img/jobs/avatar.jpg" alt=""></a>
+        </div>
+        <div class="job-list-content">
+          <h4><a style="font-size:20px;" href="#">{{$job->title}}</a></h4>
+          <p>
+            <span class="full-time">Full-Time</span>
+            <span class="part-time">Part-Time</span>
+          </p>
+          Posted by <span style="font-weight:bold;color:#FC4A1A"
+                          class="text-primary">{{$job->hr->user->name}}</span>
+          <p>{!! str_limit($job->desc,300,'...') !!}</p>
+          <div class="job-tag">
+            <div class="pull-left col-md-9">
+              <div class="meta-tag" style="word-wrap:break-word;">
+                  <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
+                                                          , {{$job->hr->user->profile->city}}</span>
+                <br/>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <a href="#" class="btn btn-common btn-rm">More Details</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

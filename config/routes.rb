@@ -2,8 +2,12 @@ Rails.application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
-  #home
-  root 'pages#home'
+  #root
+  root 'pages#home', as: 'home'
+
+  #pages
+  get 'jobs'=>'pages#jobs', as: 'jobs'
+
 
   resources :profiles
   resources :faculties
