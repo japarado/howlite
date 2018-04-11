@@ -1,4 +1,10 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>- Job Details<% end %>
+<% content_for :active_jobs do %>active<% end %>
+<% content_for :current_header do %>Job Details<% end %>
 
-<%= link_to 'Edit', edit_job_path(@job) %> |
-<%= link_to 'Back', jobs_path %>
+<% content_for :content do %>
+  <%= render 'inc/header' %>
+
+
+<a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+<% end %>

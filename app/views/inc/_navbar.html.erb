@@ -18,13 +18,13 @@
             </a>
           </li>
           <li>
-            <a class="<%= yield :active_jobs %>" href="<%= :jobs %>">
+            <a class="<%= yield :active_jobs %>" href="<%= jobs_path %>">
               Job Listings
             </a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="right"><a href="#"><i class="ti-lock"></i> Log In</a></li>
+          <li class="right"><a href="<%= new_user_session_path %>"><i class="ti-lock"></i> Log In</a></li>
         </ul>
       </div>
     </div>

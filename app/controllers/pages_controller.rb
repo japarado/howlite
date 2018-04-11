@@ -1,8 +1,6 @@
 class PagesController < ApplicationController
   def home
+    @jobs=Job.all
     render 'pages/home'
-  end
-  def jobs
-    render 'jobs/list'
   end
 end

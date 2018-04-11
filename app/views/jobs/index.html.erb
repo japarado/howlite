@@ -1,25 +1,8 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>- Job Listings<% end %>
+<% content_for :active_jobs do %>active<% end %>
+<% content_for :current_header do %>Job Listings<% end %>
 
-<h1>Jobs</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @jobs.each do |job| %>
-      <tr>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Job', new_job_path %>
+<% content_for :content do %>
+  <%= render 'inc/header' %>
+  <%= render 'inc/jobs' %>
+<% end %>

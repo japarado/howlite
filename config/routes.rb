@@ -5,14 +5,13 @@ Rails.application.routes.draw do
   #root
   root 'pages#home', as: 'home'
 
-  #pages
-  get 'jobs'=>'pages#jobs', as: 'jobs'
-
-
   resources :profiles
   resources :faculties
   resources :hrs
+
+  #jobs
   resources :jobs
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
