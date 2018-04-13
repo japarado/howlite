@@ -1,0 +1,22 @@
+<aside>
+  <div class="sidebar">
+    <h2 class="medium-title">School Details</h2>
+    <div class="box">
+      <div class="img-thumbnail">
+        <img class="img-responsive" src="/img/clients/img1.png" alt="img">
+      </div>
+      <div class="text-box">
+        <h4>{{$job->hr->user->name}}</h4>
+        <p>{!! $job->hr->user->profile->description !!}
+        </p>
+        <strong>Established on</strong>
+        <p> {{$date}}</p>
+        <strong>Location</strong>
+        <p>{{$job->hr->user->profile->street_address}}
+          , {{$job->hr->user->profile->city}} </p>
+        <strong>Contact No.</strong>
+        <p>{{$job->hr->user->profile->contact_number}}</p>
+      </div>
+    </div>
+  </div>
+</aside>
