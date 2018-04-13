@@ -24,7 +24,22 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li class="right"><a href="<%= new_user_session_path %>"><i class="ti-lock"></i> Log In</a></li>
+          <% if user_signed_in? %>
+          <li class=""><a href="<%= new_job_path %>" class="btn btn-common"><i class="ti-pencil-alt"></i>&nbsp;Post A Job</a></li>
+          <li>
+            <a href="#"><%= current_user.name %>&nbsp;<span class="caret"></span></a>
+            <ul class="dropdown">
+              <li>
+                <a href="#">Dashboard</a>
+              </li>
+              <li>
+                <%= link_to('Log Out', destroy_user_session_path,method: :delete) %>
+              </li>
+            </ul>
+          </li>
+            <% else %>
+            <li class="right"><a href="<%= new_user_session_path %>"><i class="ti-lock"></i> Log In</a></li>
+            <% end %>
         </ul>
       </div>
     </div>
