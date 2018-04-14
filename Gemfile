@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 #custom gems
-gem 'devise'
+gem 'devise',:platforms=>:ruby
 gem 'faker'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
