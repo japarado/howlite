@@ -6,23 +6,27 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#create 10 Faculties
+# create 10 users FACULTY
 10.times do
   User.create(
       :email => Faker::Internet.email,
       :name => Faker::name,
       :password => 'secret',
-      :encrypted_password => 'secret',
       :user_type => 'FACULTY'
   )
 end
+
+=begin
+User.all.each do |user|
+  Faculty.create(:user_id => user.id)
+end
+=end
 
 10.times do
   User.create(
       :email => Faker::Internet.email,
       :name => Faker::name,
       :password => 'secret',
-      :encrypted_password => 'secret',
       :user_type => 'HR'
   )
 end
