@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   root 'pages#home', as: 'home'
 
   #users
-  devise_for :users,:controllers=>{registrations:'registrations'}
+  devise_for :users,:controllers=>{registrations:'registrations',
+                                   sessions:'users/sessions'}
 
   resources :profiles
   resources :faculties
