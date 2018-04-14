@@ -11,7 +11,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
 
       #custom fields
       t.string :name
-      t.string :user_type, null: false, default: "FACULTY"
 
       ## Recoverable
       t.string   :reset_password_token
