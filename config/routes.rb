@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  devise_for :hrs
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   #root
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
 
   resources :profiles
   resources :faculties
+  resources :hrs
 
   #jobs
   resources :jobs
