@@ -1,0 +1,11 @@
+<% content_for :title do %>- Dashboard
+<% end %>
+<% content_for :dashboard_active do %>active
+<% end %>
+<% content_for :current_header do %>Dashboard
+<% end %>
+
+<% content_for :content do %>
+<%= render 'inc/header' %>
+  <%= render 'inc/dashboard-menu' %>
+<% end %>

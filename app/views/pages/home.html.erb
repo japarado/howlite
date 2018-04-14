@@ -13,7 +13,10 @@
       <br/>
       <div class="center">
         <a href="<%= jobs_path %>" class="btn btn-success">Find Jobs</a>
+
+        <% if !user_session %>
         <a href="<%= new_user_registration_path %>" class="btn btn-primary">Register for Free</a>
+        <% end %>
       </div>
     </div>
   </div>

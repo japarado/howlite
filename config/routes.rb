@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   #root
   root 'pages#home', as: 'home'
 
+  #pages
+  get  'dashboard'=>'pages#dashboard', as: 'user_dashboard'
+  
   #users
   devise_for :users,:controllers=>{registrations:'registrations',
                                    sessions:'users/sessions'}

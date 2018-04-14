@@ -3,7 +3,7 @@
   <head>
     <title>Instruu <%= yield :title %></title>
     <%= csrf_meta_tags %>
-    <link type="image/x-icon" href="/public/favicon.ico" rel="icon" />
+    <link type="image/x-icon" href="/favicon.ico" rel="icon" />
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
   </head>
@@ -18,6 +18,19 @@
 
     <%= yield :content %>
 
+  <footer>
+    <div id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>All Rights reserved &copy; 2017 - Template Designed & Developed by <a rel="nofollow"
+                                                                                     href="http://graygrids.com">GrayGrids</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
   <a href="#" class="back-to-top">
     <i class="ti-arrow-up"></i>
   </a>

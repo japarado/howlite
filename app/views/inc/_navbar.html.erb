@@ -12,11 +12,13 @@
       </div>
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav">
+          <% if !user_session %>
           <li>
             <a class="<%= yield :active_home %>" href="<%= home_path %>">
               Home
             </a>
           </li>
+            <% end %>
           <li>
             <a class="<%= yield :active_jobs %>" href="<%= jobs_path %>">
               Job Listings
@@ -27,10 +29,10 @@
           <% if user_signed_in? %>
           <li class=""><a href="<%= new_job_path %>" class="btn btn-common"><i class="ti-pencil-alt"></i>&nbsp;Post A Job</a></li>
           <li>
-            <a href="#"><%= current_user.name %>&nbsp;<span class="caret"></span></a>
+            <a href="<%= user_dashboard_path %>"><img width="18" class="img-circle" src="/img/resume/img-1.jpg"/>&nbsp;<%= current_user.name %>&nbsp<span class="caret"></span></a>
             <ul class="dropdown">
               <li>
-                <a href="#">Dashboard</a>
+                <a href="<%= user_dashboard_path %>">Dashboard</a>
               </li>
               <li>
                 <%= link_to('Log Out', destroy_user_session_path,method: :delete) %>
