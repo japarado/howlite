@@ -13,12 +13,12 @@
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav">
           <% if !user_session %>
-          <li>
-            <a class="<%= yield :active_home %>" href="<%= home_path %>">
-              Home
-            </a>
-          </li>
-            <% end %>
+            <li>
+              <a class="<%= yield :active_home %>" href="<%= home_path %>">
+                Home
+              </a>
+            </li>
+          <% end %>
           <li>
             <a class="<%= yield :active_jobs %>" href="<%= jobs_path %>">
               Job Listings
@@ -27,21 +27,26 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
-          <li class=""><a href="<%= new_job_path %>" class="btn btn-common"><i class="ti-pencil-alt"></i>&nbsp;Post A Job</a></li>
-          <li>
-            <a href="<%= user_dashboard_path %>"><img width="18" class="img-circle" src="/img/resume/img-1.jpg"/>&nbsp;<%= current_user.name %>&nbsp<span class="caret"></span></a>
-            <ul class="dropdown">
-              <li>
-                <a href="<%= user_dashboard_path %>">Dashboard</a>
+            <% if current_user.user_type == 'HR' %>
+              <li class="">
+                <a href="<%= new_job_path %>" class="btn btn-common"><i class="ti-pencil-alt"></i>&nbsp;Post A Job</a>
               </li>
-              <li>
-                <%= link_to('Log Out', destroy_user_session_path,method: :delete) %>
-              </li>
-            </ul>
-          </li>
-            <% else %>
-            <li class="right"><a href="<%= new_user_session_path %>"><i class="ti-lock"></i> Log In</a></li>
             <% end %>
+            <li>
+              <a href="<%= user_dashboard_path %>"><img width="18" class="img-circle" src="/img/resume/img-1.jpg"/>&nbsp;<%= current_user.name %>
+                &nbsp<span class="caret"></span></a>
+              <ul class="dropdown">
+                <li>
+                  <a href="<%= user_dashboard_path %>">Dashboard</a>
+                </li>
+                <li>
+                  <%= link_to('Log Out', destroy_user_session_path, method: :delete) %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="right"><a href="<%= new_user_session_path %>"><i class="ti-lock"></i> Log In</a></li>
+          <% end %>
         </ul>
       </div>
     </div>
