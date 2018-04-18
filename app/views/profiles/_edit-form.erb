@@ -1,0 +1,45 @@
+<%= form_with(model: profile, local: true) do |form| %>
+  <% if profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+        <% profile.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.label :picture %>
+  <%= form.file_field :picture, null: true %> <br/>
+
+  <%= form.label :name %>
+  <%= form.text_field :name, value: @profile.user.name %>
+
+  <%= form.label :street_address %>
+  <%= form.text_field :street_address, null: true %><br/>
+
+  <%= form.label :city %>
+  <%= form.text_field :city, default: 'Paranaque' %><br/>
+
+  <%= form.label :contact_number %>
+  <%= form.text_field :contact_number, null: true %><br/>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %><br/>
+
+  <%= form.label :date_of_birth %>
+  <%= form.date_field :dob %><br/>
+
+  <%= form.label :region %>
+  <%= form.select :region, ['NCR', 'Calabarzon', 'Ilocos',
+                            'Cagayan Valley', 'Central Luzon', 'Mimaropa',
+                            'Bicol', 'CAR', 'Western Visayas',
+                            'Western Visayas'] %><br/>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

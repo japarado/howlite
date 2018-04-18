@@ -25,6 +25,11 @@ class ProfilesController < ApplicationController
   # POST /profiles
   # POST /profiles.json
   def create
+    #change current user's name to the set name
+    user = @profile.user
+    user.name = profile_params[:name]
+    user.save
+
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
     user = User.find(current_user.id)
@@ -43,6 +48,10 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    user = User.find(current_user.id)
+    user.name = user_params[:name]
+    user.save
+
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }
@@ -73,6 +82,10 @@ class ProfilesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
       params.fetch(:profile, {}).permit(:picture,:description,:dob,:region,
-                                                  :city,:street_address,:contact_number,:name)
+                                                  :city,:street_address,:contact_number)
+    end
+
+    def user_params
+      params.fetch(:profile, {}).permit(:name)
     end
 end
