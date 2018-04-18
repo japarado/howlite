@@ -41,7 +41,22 @@ end
   )
 end
 
+#insert each user type into their respective tables and create profiles for them
+regions = ['NCR', 'Calabarzon', 'Ilocos',
+           'Cagayan Valley', 'Central Luzon', 'Mimaropa',
+           'Bicol', 'CAR', 'Western Visayas',
+           'Western Visayas']
 User.all.each do |user|
+  Profile.create(
+      :user_id => user.id,
+      :picture => 'http://lorempixel.com/400/200/people',
+      :contact_number => '+639' + Faker::Number.number(9),
+      :description => Faker::HitchhikersGuideToTheGalaxy.quote,
+      :dob => Faker::Date.birthday(21, 55),
+      :region => regions.sample,
+      :city => Faker::Address.city,
+      :street_address => Faker::Address.street_address,
+      )
   if user.user_type == 'FACULTY'
     Faculty.create(:user_id => user.id)
   else
