@@ -28,8 +28,9 @@ class ApplicationsController < ApplicationController
     faculty = current_user.faculty
     job = Job.find(params[:job_id])
 
-    @application = Application.new(:faculty => faculty, :job => job)
-    @application.save
+    faculty.jobs << job
+    #@application = Application.new(:faculty => faculty, :job => job)
+    #@application.save
     #respond_to do |format|
       #if @application.save
         #format.html { redirect_to @application, notice: 'Application was successfully created.' }

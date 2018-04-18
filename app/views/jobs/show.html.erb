@@ -1,6 +1,9 @@
-<% content_for :title do %>- Job Details<% end %>
-<% content_for :active_jobs do %>active<% end %>
-<% content_for :current_header do %>Job Details<% end %>
+<% content_for :title do %>- Job Details
+<% end %>
+<% content_for :active_jobs do %>active
+<% end %>
+<% content_for :current_header do %>Job Details
+<% end %>
 
 <% content_for :content do %>
   <%= render 'inc/header' %>
@@ -20,9 +23,9 @@
                 <h3><%= @job.title %></h3>
                 <p>
                   <% if @job.job_type == 'FT' %>
-                  <span class="full-time">Full-Time</span>
+                    <span class="full-time">Full-Time</span>
                   <% elsif @job.job_type == 'PT' %>
-                  <span class="part-time">Part-Time</span>
+                    <span class="part-time">Part-Time</span>
                   <% end %>
                 </p>
                 <!--
@@ -42,7 +45,11 @@
                     Hour
                   <% end %></strong>
                 <!--<a href="#" class="btn btn-common btn-sm">Apply for this Job</a>-->
-                <%= render 'applications/apply-form' %>
+                <% if current_user.faculty.jobs.count > 0 %>
+                  <p class="alert alert-success">You've already applied for this job</p>
+                <% else %>
+                  <%= render 'applications/apply-form' %>
+                <% end %>
 
                 <!--<a href="#" class="btn btn-common btn-sm">Login to Apply</a>-->
 
