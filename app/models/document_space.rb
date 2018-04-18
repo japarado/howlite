@@ -1,0 +1,2 @@
+class DocumentSpace < ApplicationRecord
+end
