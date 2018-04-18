@@ -26,9 +26,9 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     #change current user's name to the set name
-    user = @profile.user
-    user.name = profile_params[:name]
-    user.save
+   # user = @profile.user
+   # user.name = profile_params[:name]
+   # user.save
 
     @profile = Profile.new(profile_params)
     @profile.user_id = current_user.id
