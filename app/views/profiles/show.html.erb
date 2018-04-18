@@ -2,7 +2,7 @@
 <% content_for :current_header do %>Profile<% end %>
 
 <% content_for :content do %>
-  Picture: <%= @profile.picture %><br/>
+  <img src="<%= @profile.picture %>"/><br/>
   Name: <%= @profile.user.name %><br/>
   Contact Number: <%= @profile.contact_number %>
   Address: <%= @profile.street_address %><br/>
