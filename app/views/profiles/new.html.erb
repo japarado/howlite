@@ -1,8 +1,22 @@
+<% content_for :title do %>- Create your Profile
+<% end %>
+<% content_for :current_header do %>Create your Profile
+<% end %>
+
 <% content_for :content do %>
 
-<h1>New Profile</h1>
+  <%= render 'inc/header' %>
+  <div class="modal-dialog modal-lg">
+    <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <br/>
+    <br/>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="myModalLabel">Create your Profile</h3>
+      </div>
 
-<%= render 'form', profile: @profile %>
+      <%= render 'form', profile: @profile %>
+    </div>
+  </div>
 
-<%= link_to 'Back', profiles_path %>
 <% end %>

@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 #custom gems
-gem 'devise'
+gem 'devise', platforms: [:ruby]
 gem 'faker'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', :platforms=>:ruby
+#gem 'bcrypt', :platforms=>:ruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -56,3 +56,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #admin
 gem 'rails_admin','~> 1.3'
+
+#willpaginate
+gem 'will_paginate'
