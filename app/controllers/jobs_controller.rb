@@ -16,7 +16,11 @@ class JobsController < ApplicationController
   # GET /jobs/new
   def new
     #@job_type=Hash.new("FT"=>"Full-Time","PT"=>"Part-Time")
-    @job = Job.new
+    if !(current_user.user_type == 'HR')
+      redirect_to(jobs_path)
+    else
+      @job = Job.new
+    end
   end
 
   # GET /jobs/1/edit

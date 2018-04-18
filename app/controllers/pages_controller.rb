@@ -12,6 +12,8 @@ class PagesController < ApplicationController
   def dashboard
     if !user_session
       redirect_to(new_user_session_path)
+    elsif !current_user.profile
+      redirect_to(new_profile_path)
     else
       render 'pages/user/dashboard'
     end

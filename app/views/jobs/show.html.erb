@@ -35,8 +35,13 @@
                   <span><i class="ti-mobile"></i>{{$job->hr->user->profile->contact_number}}</span>
                 </div>
                 -->
-                <strong class="price"><i class="fa fa-money"></i>P<%= @job.salary %> per Month</strong>
-
+                <strong class="price"><i class="fa fa-money"></i>P<%= @job.salary %> per
+                  <% if @job.job_type == 'FT' %>
+                    Month
+                  <% elsif @job.job_type == 'PT' %>
+                    Hour
+                  <% end %></strong>
+                <a href="#" class="btn btn-common btn-sm">Apply for this Job</a>
 
                 <!--<a href="#" class="btn btn-common btn-sm">Login to Apply</a>-->
 
