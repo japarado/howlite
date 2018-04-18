@@ -7,5 +7,60 @@
 
 <% content_for :content do %>
 <%= render 'inc/header' %>
-  <%= render 'inc/dashboard-menu' %>
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <div class="right-sidebar">
+            <div class="inner-box">
+              <!--FACULTY-->
+              <h4>Account</h4>
+              <ul class="lest item">
+                <li>
+                  <a class="<%= yield :dashboard_active %>" href="#">
+                    <span class="ti-layout-grid2"></span>
+                    Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a class="<%= yield :profile_active %>" href="#">
+                    <span class="ti-user"></span>
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="<%= yield :notifications_active %>" href="#">
+                    <span class="ti-bolt"></span>
+                    Notifications
+                    <span class="notinumber">#</span>
+                  </a>
+                </li>
+              </ul>
+              <h4>Repository</h4>
+              <ul class="lest item">
+                <li>
+                  <a class="<%= yield :repository_active %>" href="#">
+                    <span class="ti-folder"></span>
+                    My Guru Drive
+                  </a>
+                </li>
+              </ul>
+              <ul class="lest">
+                <li>
+                  <%= link_to(destroy_user_session_path, method: :delete) do %>
+                    <span class="ti-filter"></span>
+                    Log Out
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <%= yield(:dashboard_content) %>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+
