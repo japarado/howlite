@@ -13,7 +13,7 @@ class PagesController < ApplicationController
     if !user_session
       redirect_to(new_user_session_path)
     else
-      render 'pages/dashboard'
+      render 'pages/user/dashboard'
     end
   end
 end
