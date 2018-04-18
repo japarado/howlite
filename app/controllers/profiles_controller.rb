@@ -26,6 +26,8 @@ class ProfilesController < ApplicationController
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.user_id = current_user.id
+    user = User.find(current_user.id)
 
     respond_to do |format|
       if @profile.save
@@ -70,6 +72,7 @@ class ProfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def profile_params
-      params.fetch(:profile, {})
+      params.fetch(:profile, {}).permit(:picture,:description,:dob,:region,
+                                                  :city,:street_address,:contact_number,:name)
     end
 end

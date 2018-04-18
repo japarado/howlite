@@ -12,16 +12,16 @@
   <% end %>
 
   <%= form.label :picture %>
-  <%= form.file_field :picture %> <br/>
+  <%= form.file_field :picture, null: true %> <br/>
 
   <%= form.label :street_address %>
-  <%= form.text_field :street_address %><br/>
+  <%= form.text_field :street_address, null: true %><br/>
 
   <%= form.label :city %>
-  <%= form.text_field :city %><br/>
+  <%= form.text_field :city, default: 'Paranaque' %><br/>
 
   <%= form.label :contact_number %>
-  <%= form.text_field :contact_number %><br/>
+  <%= form.text_field :contact_number, null: true %><br/>
 
   <%= form.label :description %>
   <%= form.text_area :description %><br/>
