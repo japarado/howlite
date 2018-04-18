@@ -41,7 +41,8 @@
                   <% elsif @job.job_type == 'PT' %>
                     Hour
                   <% end %></strong>
-                <a href="#" class="btn btn-common btn-sm">Apply for this Job</a>
+                <!--<a href="#" class="btn btn-common btn-sm">Apply for this Job</a>-->
+                <%= render 'applications/apply-form' %>
 
                 <!--<a href="#" class="btn btn-common btn-sm">Login to Apply</a>-->
 

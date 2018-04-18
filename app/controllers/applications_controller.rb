@@ -24,7 +24,11 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.json
   def create
-    @application = Application.new(application_params)
+    faculty = current_user.faculty
+    job_id = application_params[:job_id]
+    job = Job.find(params[:job_id])
+
+    faculty.jobs << job
 
     respond_to do |format|
       if @application.save
@@ -35,6 +39,7 @@ class ApplicationsController < ApplicationController
         format.json { render json: @application.errors, status: :unprocessable_entity }
       end
     end
+    redirect_back(fallback_location: jobs_path)
   end
 
   # PATCH/PUT /applications/1
@@ -69,6 +74,6 @@ class ApplicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.fetch(:application, {})
+      params.fetch(:application, {}).permit(:job_id)
     end
 end
