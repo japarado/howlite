@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /applications
   # GET /applications.json
@@ -25,20 +26,19 @@ class ApplicationsController < ApplicationController
   # POST /applications.json
   def create
     faculty = current_user.faculty
-    job_id = application_params[:job_id]
     job = Job.find(params[:job_id])
 
-    faculty.jobs << job
-
-    respond_to do |format|
-      if @application.save
-        format.html { redirect_to @application, notice: 'Application was successfully created.' }
-        format.json { render :show, status: :created, location: @application }
-      else
-        format.html { render :new }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
-      end
-    end
+    @application = Application.new(:faculty => faculty, :job => job)
+    @application.save
+    #respond_to do |format|
+      #if @application.save
+        #format.html { redirect_to @application, notice: 'Application was successfully created.' }
+        #format.json { render :show, status: :created, location: @application }
+      #else
+        #format.html { render :new }
+        #format.json { render json: @application.errors, status: :unprocessable_entity }
+      #end
+    #end
     redirect_back(fallback_location: jobs_path)
   end
 
