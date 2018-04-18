@@ -11,6 +11,31 @@
     </div>
   <% end %>
 
+  <%= form.label :picture %>
+  <%= form.file_field :picture %> <br/>
+
+  <%= form.label :street_address %>
+  <%= form.text_field :street_address %><br/>
+
+  <%= form.label :city %>
+  <%= form.text_field :city %><br/>
+
+  <%= form.label :contact_number %>
+  <%= form.text_field :contact_number %><br/>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %><br/>
+
+  <%= form.label :date_of_birth %>
+  <%= form.date_field :dob %><br/>
+
+  <%= form.label :region %>
+  <%= form.select :region, ['NCR','Calabarzon','Ilocos',
+                            'Cagayan Valley','Central Luzon','Mimaropa',
+                            'Bicol','CAR','Western Visayas',
+                            'Western Visayas'] %><br/>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
