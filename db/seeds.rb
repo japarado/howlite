@@ -63,3 +63,21 @@ User.all.each do |user|
     Hr.create(:user_id => user.id)
   end
 end
+
+#create a job for each HR
+Hr.all.each do |hr|
+  Job.create(
+      :hr_id => hr.id,
+      :title => "Need professor to teach" + Faker::Hacker.ingverb + " " + Faker::Hacker.noun,
+      :job_type => "FT",
+      :salary => Faker::Number.decimal(5),
+      :desc => Faker::SiliconValley.motto,
+      )
+  Job.create(
+      :hr_id => hr.id,
+      :title => "Need professor to teach" + Faker::Hacker.ingverb + " " + Faker::Hacker.noun,
+      :job_type => "PT",
+      :salary => Faker::Number.decimal(5),
+      :desc => Faker::SiliconValley.motto,
+      )
+end
