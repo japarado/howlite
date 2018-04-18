@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :document_spaces
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
   #root
@@ -20,6 +20,11 @@ Rails.application.routes.draw do
   #jobs
   resources :jobs
 
+  #documents
+  resources :documents
+
+  #documentspaces
+  resources :document_spaces
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
