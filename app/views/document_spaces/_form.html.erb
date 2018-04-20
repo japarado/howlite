@@ -11,7 +11,16 @@
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+
+  <%= form_for @document_space, html: { multipart: true } do |form| %>
+
+    <%= form.text_field :title, placeholder: "Add Folder" %>
+
+      <%= button_tag( :class => "btn btn-primary") do %>
+        <i class="fa fa-plus" aria-hidden="true"></i>
+      <% end %>
+
+  <% end %>
+
+
 <% end %>

@@ -33,16 +33,16 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
 
-    @document_space = DocumentSpace.find(1)
+    @document_space = DocumentSpace.find(document_params[:document_space_id])
 
     @document = Document.new(document_params)
     @document.document_space_id = @document_space.id
     @document.name = document_params[:attachment].original_filename
 
     if @document.save
-         redirect_to documents_url, notice: document_params[:attachment].original_filename+' has been saved.'
+         redirect_to request.referrer, notice: document_params[:attachment].original_filename+' has been saved.'
     else
-         redirect_to documents_url, notice: @document.errors.full_messages
+         redirect_to request.referrer, notice: @document.errors.full_messages
     end
 
   end
@@ -66,7 +66,7 @@ class DocumentsController < ApplicationController
   def destroy
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to request.referrer, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -79,6 +79,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.require(:document).permit(:attachment)
+      params.require(:document).permit(:attachment, :document_space_id)
     end
 end

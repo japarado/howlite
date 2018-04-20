@@ -1,4 +1,104 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>- Documents
+<% end %>
+<% content_for :current_header do %> <%= @document_space.title %> Files
+<% end %>
 
-<%= link_to 'Edit', edit_document_space_path(@document_space) %> |
-<%= link_to 'Back', document_spaces_path %>
+<% content_for :content do %>
+<%= render 'inc/header' %>
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-sm-3 col-xs-12">
+          <div class="right-sidebar">
+            <div class="inner-box">
+              <!--FACULTY-->
+              <h4>Account</h4>
+              <ul class="lest item">
+                <li>
+                  <a class="<%= yield :dashboard_active %>" href="#">
+                    <span class="ti-layout-grid2"></span>
+                    Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a class="<%= yield :profile_active %>" href="#">
+                    <span class="ti-user"></span>
+                    My Profile
+                  </a>
+                </li>
+                <li>
+                  <a class="<%= yield :notifications_active %>" href="#">
+                    <span class="ti-bolt"></span>
+                    Notifications
+                    <span class="notinumber">#</span>
+                  </a>
+                </li>
+              </ul>
+              <h4>Repository</h4>
+              <ul class="lest item">
+                <li>
+                  <a class="<%= yield :repository_active %>" href="<%= document_spaces_path %>">
+                    <span class="ti-folder"></span>
+                    My Guru Drive
+                  </a>
+                </li>
+              </ul>
+              <ul class="lest">
+                <li>
+                  <%= link_to(destroy_user_session_path, method: :delete) do %>
+                    <span class="ti-filter"></span>
+                    Log Out
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-12">
+          <% if !flash[:notice].blank? %>
+		   <div class = "alert alert-info">
+		      <%= flash[:notice] %>
+		   </div>
+		  <% end %>
+
+
+		  <h1><%= @document_space.title %></h1>
+
+
+		  <%= form_for @document, html: { multipart: true } do |form| %>
+		      <%= form.label "Upload File" %>
+		      <%= form.file_field :attachment %>
+		      <%= form.hidden_field :document_space_id, value: @document_space.id %>
+		      <%= form.submit "Save", class: "btn btn-primary" %>
+		  <% end %>
+
+
+		<table class = "table table-bordered table-striped">
+		   <thead>.
+		      <tr>
+		         <th>Name</th>
+		         <th>Download Link</th>
+		         <th> </th>
+		      </tr>
+		   </thead>
+		   
+		   <tbody>
+		      <% @documents.each do |document| %>
+		         
+		         <tr>
+		            <td><%= document.name %></td>
+		            <td><%= link_to "Download", document.attachment_url %></td>
+		            <td><%= button_to "Delete",  document, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{document.name}?" %></td>
+		         </tr>
+		         
+		      <% end %>
+		   </tbody>
+		   
+		</table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

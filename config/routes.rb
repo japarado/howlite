@@ -23,7 +23,6 @@ Rails.application.routes.draw do
 
   #documents
   resources :documents
-  get 'drive'=>'documents#drive', as: 'instruu_drive'
 
   #documentspaces
   resources :document_spaces
