@@ -1,9 +1,3 @@
-<% content_for :title do %>- Dashboard
-<% end %>
-<% content_for :dashboard_active do %>active
-<% end %>
-<% content_for :current_header do %>Dashboard
-<% end %>
 
 <% content_for :content do %>
 <%= render 'inc/header' %>
@@ -17,13 +11,13 @@
               <h4>Account</h4>
               <ul class="lest item">
                 <li>
-                  <a class="<%= yield :dashboard_active %>" href="#">
+                  <a class="<%= yield :dashboard_active %>" href="<%= user_dashboard_path %>">
                     <span class="ti-layout-grid2"></span>
                     Dashboard
                   </a>
                 </li>
                 <li>
-                  <a class="<%= yield :profile_active %>" href="#">
+                  <a class="<%= yield :profile_active %>" href="<%= profile_path(current_user) %>">
                     <span class="ti-user"></span>
                     My Profile
                   </a>

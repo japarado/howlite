@@ -1,5 +1,32 @@
 <section class="find-job section">
   <div class="container">
+
+    <%= form_for @job, html: { multipart: true } do |form| %>
+
+      <%= form.text_field :title, placeholder: "Search" %>
+
+      <%= form.select(:job_type) do %>
+        <option disabled selected>Job Type</option>
+        <% [['Type1', 'Type1value'], ['Type2', 'Type2value']].each do |c| -%>
+          <%= content_tag(:option, c.first, value: c.last) %>
+        <% end %>
+      <% end %>
+
+
+      <%= form.select(:salary) do %>
+        <option disabled selected>Salary</option>
+        <% [['>20000', ">20000"], ['>30000', ">30000"]].each do |c| -%>
+          <%= content_tag(:option, c.first, value: c.last) %>
+        <% end %>
+      <% end %>
+
+      <%= button_tag( :class => "btn btn-primary") do %>
+        <i class="fa fa-search" aria-hidden="true"></i>
+      <% end %>
+
+    <% end %>
+
+
     <br/>
     <div class="row">
       <h2 class="section-title">Jobs</h2>
