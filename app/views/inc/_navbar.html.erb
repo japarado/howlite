@@ -33,7 +33,7 @@
               </li>
             <% end %>
             <li>
-              <a href="<%= user_dashboard_path %>"><img width="18" class="img-circle" src="/img/resume/img-1.jpg"/>&nbsp;<%= current_user.name %>
+              <a href="<%= user_dashboard_path %>"><img width="18" class="img-circle" src="<%= current_user.profile.picture %>"/>&nbsp;<%= current_user.name %>
                 &nbsp<span class="caret"></span></a>
               <ul class="dropdown">
                 <li>
