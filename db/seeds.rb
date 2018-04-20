@@ -14,6 +14,13 @@
 @faculty_user.user_type = 'FACULTY'
 @faculty_user.save
 
+User.create(
+    :email => 'eugenebdelfin@gmail.com',
+    :name => 'Eugene Delfin',
+    :password => 'secret',
+    :user_type => 'FACULTY',
+)
+
 #create a constant HR
 @hr_user = User.new
 @hr_user.email = 'apc@mail.com'
@@ -56,7 +63,7 @@ User.all.each do |user|
       :region => regions.sample,
       :city => Faker::Address.city,
       :street_address => Faker::Address.street_address,
-      )
+  )
   if user.user_type == 'FACULTY'
     Faculty.create(:user_id => user.id)
   else
@@ -72,12 +79,13 @@ Hr.all.each do |hr|
       :job_type => "FT",
       :salary => Faker::Number.decimal(5),
       :desc => Faker::SiliconValley.motto,
-      )
+  )
   Job.create(
       :hr_id => hr.id,
       :title => "Need professor to teach " + Faker::Hacker.ingverb + " " + Faker::Hacker.noun,
       :job_type => "PT",
       :salary => Faker::Number.decimal(5),
       :desc => Faker::SiliconValley.motto,
-      )
+  )
 end
+

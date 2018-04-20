@@ -14,4 +14,5 @@ class Job < ApplicationRecord
   validates :salary, presence: true
   validates :desc, presence: true
 
+  scope :part_time, -> {where(job_type: "PT")}
 end
