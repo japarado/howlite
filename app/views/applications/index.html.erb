@@ -11,7 +11,7 @@
     <% @applications.each do |application| %>
       <% application.each do |job, employees| %>
         <% employees.each do |employee| %>
-          <%= job.title %> - <%= employee.user.name %><br/>
+          <%= job.title %> - <%= job.hr.user.profile.street_address %> - <%= employee.user.name %><br/>
         <% end %>
       <% end %>
     <% end %>
