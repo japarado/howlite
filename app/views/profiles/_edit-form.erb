@@ -1,45 +1,123 @@
+<%= stylesheet_link_tag 'css/profile/picture' %>
+
+
 <%= form_with(model: profile, local: true) do |form| %>
   <% if profile.errors.any? %>
+    <!--
     <div id="error_explanation">
       <h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
 
       <ul>
-        <% profile.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
       </ul>
     </div>
+    -->
+    <div class="list-group">
+      <% profile.errors.full_messages.each do |message| %>
+        <li class="list-group-item list-group-item-danger"><%= message %></li>
+      <% end %>
+    </div>
   <% end %>
+  <div class="modal-body">
+    <div class="row">
+      <div class="form-group center">
+        <%= form.label(:picture, {:class => 'control-label'}) %>
+        <div id="dropzone">
+          <div>Drop/Click</div>
+          <%= form.file_field :picture, {null: true, :accept => 'image/png,image/jpeg,image/bmp'} %>
+        </div>
 
-  <%= form.label :picture %>
-  <%= form.file_field :picture, null: true %> <br/>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= form.label :name,{:class => 'control-label'} %>
+      <%= form.text_field :name, { value: @profile.user.name ,:class => 'form-control'}%>
+    </div>
+    <div class="row">
+      <div class="form-group">
+        <div class="search-category-container">
+          <%= form.label :region, {:class => 'control-label'} %>
+          <%= form.select :region, ['NCR', 'Calabarzon', 'Ilocos',
+                                    'Cagayan Valley', 'Central Luzon', 'Mimaropa',
+                                    'Bicol', 'CAR', 'Western Visayas',
+                                    'Western Visayas'], {include_blank: 'Select a region'}, {:class => 'dropdown-product selectpicker', required: true} %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= form.label :street_address, {:class => 'control-label'} %>
+          <%= form.text_field :street_address, {null: true, :class => 'form-control'} %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :city, {:class => 'control-label'} %>
+          <%= form.text_field :city, {default: 'Paranaque', :class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= form.label :contact_number, {:class => 'control-label'} %>
+          <%= form.text_field :contact_number, {null: true, :class => 'form-control'} %>
+        </div>
+        <div class="form-group col-md-6">
+          <%= form.label :date_of_birth, {:class => 'control-label'} %>
+          <%= form.date_field :dob, {:class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= form.label :description, {:class => 'control-label'} %>
+        <%= form.text_area :description, {:class => 'form-control', rows: 4} %>
+      </div>
 
-  <%= form.label :name %>
-  <%= form.text_field :name, value: @profile.user.name %>
 
-  <%= form.label :street_address %>
-  <%= form.text_field :street_address, null: true %><br/>
-
-  <%= form.label :city %>
-  <%= form.text_field :city, default: 'Paranaque' %><br/>
-
-  <%= form.label :contact_number %>
-  <%= form.text_field :contact_number, null: true %><br/>
-
-  <%= form.label :description %>
-  <%= form.text_area :description %><br/>
-
-  <%= form.label :date_of_birth %>
-  <%= form.date_field :dob %><br/>
-
-  <%= form.label :region %>
-  <%= form.select :region, ['NCR', 'Calabarzon', 'Ilocos',
-                            'Cagayan Valley', 'Central Luzon', 'Mimaropa',
-                            'Bicol', 'CAR', 'Western Visayas',
-                            'Western Visayas'] %><br/>
-
-
-  <div class="actions">
-    <%= form.submit %>
+    </div>
+    <div class="modal-footer">
+      <%= form.submit({:class => ['btn btn-common']}) %>
+    </div>
   </div>
+
 <% end %>
+<%= javascript_include_tag 'js/jquery/jquery.min' %>
+<script>
+    $(function () {
+
+        $('#dropzone').on('dragover', function () {
+            $(this).addClass('hover');
+        });
+
+        $('#dropzone').on('dragleave', function () {
+            $(this).removeClass('hover');
+        });
+
+        $('#dropzone input').on('change', function (e) {
+            var file = this.files[0];
+
+            $('#dropzone').removeClass('hover');
+
+            if (this.accept && $.inArray(file.type, this.accept.split(/, ?/)) === -1) {
+                return alert('File type not allowed.');
+            }
+
+            $('#dropzone').addClass('dropped');
+            $('#dropzone img').remove();
+
+            if ((/^image\/(gif|png|jpeg|bmp)$/i).test(file.type)) {
+                var reader = new FileReader(file);
+
+                reader.readAsDataURL(file);
+
+                reader.onload = function (e) {
+                    var data = e.target.result,
+                        $img = $('<img />').attr('src', data).fadeIn();
+
+                    $('#dropzone div').html($img);
+                };
+            } else {
+                var ext = file.name.split('.').pop();
+
+                $('#dropzone div').html(ext);
+            }
+        });
+    });
+</script>
