@@ -1,25 +1,48 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>- Documents
+<% end %>
+<% content_for :current_header do %>Documents
+<% end %>
+
+<% content_for :content do %>
+
+<% if !flash[:notice].blank? %>
+   <div class = "alert alert-info">
+      <%= flash[:notice] %>
+   </div>
+<% end %>
+
 
 <h1>Documents</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @documents.each do |document| %>
+<%= form_for @document, html: { multipart: true } do |form| %>
+      <%= form.label "Upload File" %>
+      <%= form.file_field :attachment %>
+      <%= form.submit "Save", class: "btn btn-primary" %>
+<% end %>
+
+
+<table class = "table table-bordered table-striped">
+   <thead>.
       <tr>
-        <td><%= link_to 'Show', document %></td>
-        <td><%= link_to 'Edit', edit_document_path(document) %></td>
-        <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+         <th>Name</th>
+         <th>Download Link</th>
+         <th> </th>
       </tr>
-    <% end %>
-  </tbody>
+   </thead>
+   
+   <tbody>
+      <% @documents.each do |document| %>
+         
+         <tr>
+            <td><%= document.name %></td>
+            <td><%= link_to "Download Resume", document.attachment_url %></td>
+            <td><%= button_to "Delete",  document, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{document.name}?" %></td>
+         </tr>
+         
+      <% end %>
+   </tbody>
+   
 </table>
 
-<br>
-
-<%= link_to 'New Document', new_document_path %>
+<% end %>

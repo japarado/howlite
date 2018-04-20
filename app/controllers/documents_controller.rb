@@ -1,10 +1,18 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
+
+  # GET /drive
+  def drive
+    @documents = Document.all
+    @document = Document.new
+  end
+
   # GET /documents
   # GET /documents.json
   def index
     @documents = Document.all
+    @document = Document.new
   end
 
   # GET /documents/1
@@ -24,17 +32,19 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
-    @document = Document.new(document_params)
 
-    respond_to do |format|
-      if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
-      else
-        format.html { render :new }
-        format.json { render json: @document.errors, status: :unprocessable_entity }
-      end
+    @document_space = DocumentSpace.find(1)
+
+    @document = Document.new(document_params)
+    @document.document_space_id = @document_space.id
+    @document.name = document_params[:attachment].original_filename
+
+    if @document.save
+         redirect_to documents_url, notice: document_params[:attachment].original_filename+' has been saved.'
+    else
+         redirect_to documents_url, notice: @document.errors.full_messages
     end
+
   end
 
   # PATCH/PUT /documents/1
@@ -69,6 +79,6 @@ class DocumentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def document_params
-      params.fetch(:document, {})
+      params.require(:document).permit(:attachment)
     end
 end
