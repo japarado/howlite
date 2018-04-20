@@ -1,6 +1,23 @@
-<h1>Editing Job</h1>
+<% content_for :title do %>- Update Job
+<% end %>
+<% content_for :current_header do %>Update Job
+<% end %>
 
-<%= render 'form', job: @job %>
+<% content_for :content do %>
+  <%= render 'inc/header' %>
 
-<%= link_to 'Show', @job %> |
-<%= link_to 'Back', jobs_path %>
+  <div class="modal-dialog modal-lg">
+    <a onclick="goBack()" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+    <br/>
+    <br/>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="myModalLabel">Update "<%= @job.title %>"</h3>
+      </div>
+
+      <%= render 'form', job: @job %>
+
+
+    </div>
+  </div>
+<% end %>
