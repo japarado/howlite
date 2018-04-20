@@ -6,6 +6,10 @@ class JobsController < ApplicationController
   def index
     #@jobs = Job.all
     @jobs = Job.paginate(:page => params[:page],:per_page=>5).order(updated_at: :desc)
+
+
+    # Para lang sa search form
+    @job = Job.new
   end
 
   # GET /jobs/1
