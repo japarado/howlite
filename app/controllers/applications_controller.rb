@@ -5,7 +5,14 @@ class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
   def index
-    @applications = Application.all
+    jobs = current_user.hr.jobs
+    @applications = Array.new
+    jobs.each do |job|
+      job.faculties.each do |faculty|
+        @applications << faculty
+      end
+    end
+    @applications
   end
 
   # GET /applications/1

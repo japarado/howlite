@@ -1,7 +1,7 @@
-<p id="notice"><%= notice %></p>
+<% content_for :title do %>- Applications<% end %>
+<% content_for :current_header do %>Job Applications<% end %>
 
-<h1>Applications</h1>
-
+<% content_for :content do %>
 <table>
   <thead>
     <tr>
@@ -12,7 +12,8 @@
   <tbody>
     <% @applications.each do |application| %>
       <tr>
-        <td><%= application.faculty.name %></td>
+        <td><%= application.user.name %></td>
+        <!--<td><%= application.user.name %></td>-->
         <td><%= link_to 'Show', application %></td>
         <td><%= link_to 'Edit', edit_application_path(application) %></td>
         <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -24,3 +25,4 @@
 <br>
 
 <%= link_to 'New Application', new_application_path %>
+<% end %>
