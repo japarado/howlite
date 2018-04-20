@@ -244,7 +244,6 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bcrypt
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)
