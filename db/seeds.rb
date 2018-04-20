@@ -14,12 +14,21 @@
 @faculty_user.user_type = 'FACULTY'
 @faculty_user.save
 
+# constant uge things
 User.create(
     :email => 'eugenebdelfin@gmail.com',
     :name => 'Eugene Delfin',
     :password => 'secret',
     :user_type => 'FACULTY',
 )
+
+User.create(
+    :email => 'thegreatkenway@gmail.com',
+    :name => 'Kenway',
+    :password => 'secret',
+    :user_type => 'HR',
+    )
+
 
 #create a constant HR
 @hr_user = User.new
