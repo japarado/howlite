@@ -8,8 +8,13 @@ class ApplicationsController < ApplicationController
     jobs = current_user.hr.jobs
     @applications = Array.new
     jobs.each do |job|
-      job.faculties.each do |faculty|
-        @applications << faculty
+      job_faculties_map = Hash.new
+      job_faculties_map[job] = Array.new
+      if job.faculties.length > 0
+        job.faculties.each do |faculty|
+          job_faculties_map[job] << faculty
+        end
+        @applications << job_faculties_map
       end
     end
     @applications
@@ -39,13 +44,13 @@ class ApplicationsController < ApplicationController
     #@application = Application.new(:faculty => faculty, :job => job)
     #@application.save
     #respond_to do |format|
-      #if @application.save
-        #format.html { redirect_to @application, notice: 'Application was successfully created.' }
-        #format.json { render :show, status: :created, location: @application }
-      #else
-        #format.html { render :new }
-        #format.json { render json: @application.errors, status: :unprocessable_entity }
-      #end
+    #if @application.save
+    #format.html { redirect_to @application, notice: 'Application was successfully created.' }
+    #format.json { render :show, status: :created, location: @application }
+    #else
+    #format.html { render :new }
+    #format.json { render json: @application.errors, status: :unprocessable_entity }
+    #end
     #end
     redirect_back(fallback_location: jobs_path)
   end
@@ -55,11 +60,11 @@ class ApplicationsController < ApplicationController
   def update
     respond_to do |format|
       if @application.update(application_params)
-        format.html { redirect_to @application, notice: 'Application was successfully updated.' }
-        format.json { render :show, status: :ok, location: @application }
+        format.html {redirect_to @application, notice: 'Application was successfully updated.'}
+        format.json {render :show, status: :ok, location: @application}
       else
-        format.html { render :edit }
-        format.json { render json: @application.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @application.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -69,19 +74,21 @@ class ApplicationsController < ApplicationController
   def destroy
     @application.destroy
     respond_to do |format|
-      format.html { redirect_to applications_url, notice: 'Application was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to applications_url, notice: 'Application was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_application
-      @application = Application.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def application_params
-      params.fetch(:application, {}).permit(:job_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_application
+    @application = Application.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def application_params
+    params.fetch(:application, {}).permit(:job_id)
+  end
+
 end

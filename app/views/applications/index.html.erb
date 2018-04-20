@@ -1,8 +1,22 @@
-<% content_for :title do %>- Applications<% end %>
-<% content_for :current_header do %>Job Applications<% end %>
+<% content_for :title do %>- Applications
+<% end %>
+<% content_for :current_header do %>Job Applications
+<% end %>
 
 <% content_for :content do %>
-<table>
+
+  <% if @applications.count < 1 %>
+    <h1>No Applications</h1>
+  <% else %>
+    <% @applications.each do |application| %>
+      <% application.each do |job, employees| %>
+        <% employees.each do |employee| %>
+          <%= job.title %> - <%= employee.user.name %><br/>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <!--<table>
   <thead>
     <tr>
       <th colspan="3"></th>
@@ -10,19 +24,16 @@
   </thead>
 
   <tbody>
-    <% @applications.each do |application| %>
+    <%# @applications.each do |application| %>
       <tr>
-        <td><%= application.user.name %></td>
-        <!--<td><%= application.user.name %></td>-->
-        <td><%= link_to 'Show', application %></td>
-        <td><%= link_to 'Edit', edit_application_path(application) %></td>
-        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%#= application.user.name %></td>
+        <td><%#= link_to 'Show', application %></td>
+        <td><%#= link_to 'Edit', edit_application_path(application) %></td>
+        <td><%#= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-    <% end %>
+    <%# end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Application', new_application_path %>
+<br>-->
 <% end %>
