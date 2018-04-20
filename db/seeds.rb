@@ -14,6 +14,13 @@
 @faculty_user.user_type = 'FACULTY'
 @faculty_user.save
 
+User.create(
+    :email => 'eugenebdelfin@gmail.com',
+    :name => 'Eugene Delfin',
+    :password => 'secret',
+    :user_type => 'FACULTY',
+)
+
 #create a constant HR
 @hr_user = User.new
 @hr_user.email = 'apc@mail.com'
@@ -82,9 +89,3 @@ Hr.all.each do |hr|
   )
 end
 
-@faculty_user = User.create(
-    :email => 'eugenebdelfin@gmail.com',
-    :name => 'Eugene Delfin',
-    :password => 'secret',
-    :user_type => 'FACULTY',
-)
