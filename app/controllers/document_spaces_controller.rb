@@ -4,7 +4,7 @@ class DocumentSpacesController < ApplicationController
   # GET /document_spaces
   # GET /document_spaces.json
   def index
-    @document_spaces = DocumentSpace.all
+    @document_spaces = current_user.faculty.document_spaces
     @document_space = DocumentSpace.new
   end
 
