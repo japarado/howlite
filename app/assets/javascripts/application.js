@@ -29,4 +29,5 @@
 //= require ./vendor/dropzone
 //= require ./vendor/bootstrap-confirmation.min
 //= require ./self/custom
+//= require social-share-button
 
