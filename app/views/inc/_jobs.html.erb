@@ -19,6 +19,7 @@
                   <span class="part-time">Part-Time</span>
                 <% end %>
               </p>
+              <p>Posted by<span class="text-primary">&nbsp<%= job.hr.user.name %></span></p>
               <!--
               Posted by <span style="font-weight:bold;color:#FC4A1A"
                               class="text-primary">{{$job->hr->user->name}}</span>
@@ -35,6 +36,9 @@
                   </div>
                 </div>
                 <div class="col-md-3">
+                  <span>
+                    <i class="ti-location-pin"></i><%= job.hr.user.profile.street_address %>, <%= job.hr.user.profile.city %>
+                  </span>
                   <a href="<%= job_path(job) %>" class="btn btn-common btn-rm">More Details</a>
                 </div>
               </div>
