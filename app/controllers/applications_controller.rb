@@ -37,9 +37,20 @@ class ApplicationsController < ApplicationController
   # POST /applications
   # POST /applications.json
   def create
+
+    current_user_id = current_user.id
+    @faculty = User.find(current_user_id)
     faculty = current_user.faculty
     job = Job.find(params[:job_id])
 
+    @test = User.find(job.hr.id)
+
+    @third = Job.find(params[:job_id])
+
+
+    #send mail
+    #
+    UserMailer.application_notification(@faculty,@test,@third).deliver
     faculty.jobs << job
     #@application = Application.new(:faculty => faculty, :job => job)
     #@application.save
