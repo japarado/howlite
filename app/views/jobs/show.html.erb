@@ -45,11 +45,27 @@
                     Hour
                   <% end %></strong>
                 <!--<a href="#" class="btn btn-common btn-sm">Apply for this Job</a>-->
-                <% if @job.faculties.include? current_user.faculty %>
-                  <p class="alert alert-success">You've already applied for this job</p>
-                <% else %>
-                  <%= render 'applications/apply-form' %>
+
+                <% if user_signed_in? %>
+                  <% if current_user.user_type == 'FACULTY' %>
+                    <% if @job.faculties.include? current_user.faculty %>
+                      <p class="alert alert-success">You've already applied for this job</p>
+                    <% else %>
+                      <%= render 'applications/apply-form' %>
+                    <% end %>
+                  <% end %>
+                  <% if current_user.user_type == 'HR' %>
+                    <% if @job.hr == current_user.hr %>
+                      <button type="submit">Edit this job</button>
+                    <% end %>
+                  <% end %>
                 <% end %>
+
+<!--                <%# if @job.faculties.include? current_user.faculty %>
+                  <p class="alert alert-success">You've already applied for this job</p>
+                <%# else %>
+                  <%#= render 'applications/apply-form' %>
+                <%# end %>-->
 
                 <!--<a href="#" class="btn btn-common btn-sm">Login to Apply</a>-->
 
