@@ -1,4 +1,9 @@
-<p id="notice"><%= notice %></p>
+<% if !flash[:notice].blank? %>
+  <div style="color:black;" class = "alert alert-warning alert-dismissible fade in">
+    <%= flash[:notice] %>
+    <a href="#" class="pull-right" data-dismiss="alert" aria-label="close">&times;</a>
+  </div>
+<% end %>
 
 <h1>Documents</h1>
 
