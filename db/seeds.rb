@@ -75,14 +75,14 @@ Hr.all.each do |hr|
       :hr_id => hr.id,
       :title => "Need professor to teach " + Faker::Hacker.ingverb + " " + Faker::Hacker.noun,
       :job_type => "FT",
-      :salary => Faker::Number.decimal(5),
+      :salary => Faker::Number.between(20000,45000),
       :desc => Faker::SiliconValley.motto,
       )
   Job.create(
       :hr_id => hr.id,
       :title => "Need professor to teach " + Faker::Hacker.ingverb + " " + Faker::Hacker.noun,
       :job_type => "PT",
-      :salary => Faker::Number.decimal(5),
+      :salary => Faker::Number.between(16000,32000),
       :desc => Faker::SiliconValley.motto,
       )
 end

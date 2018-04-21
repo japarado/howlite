@@ -28,6 +28,10 @@
                     <span class="part-time">Part-Time</span>
                   <% end %>
                 </p>
+                <p>
+                  <%= social_share_button_tag(@job.title) %>
+                </p>
+
                 <!--
                 <div class="meta">
                                     <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
