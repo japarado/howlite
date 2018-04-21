@@ -1,102 +1,39 @@
-<% content_for :title do %>- Documents
-<% end %>
-<% content_for :current_header do %>My Guru Drive
-<% end %>
-
-<% content_for :content do %>
-<%= render 'inc/header' %>
-  <div id="content">
-    <div class="container">
+<% content_for :dashboard_content do %>
+  <div class="job-alerts-item candidates">
+    <h3 class="alerts-title">My Guru Drive</h3>
+    <hr/>
       <div class="row">
-        <div class="col-md-3 col-sm-3 col-xs-12">
-          <div class="right-sidebar">
-            <div class="inner-box">
-              <!--FACULTY-->
-              <h4>Account</h4>
-              <ul class="lest item">
-                <li>
-                  <a class="<%= yield :dashboard_active %>" href="#">
-                    <span class="ti-layout-grid2"></span>
-                    Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a class="<%= yield :profile_active %>" href="#">
-                    <span class="ti-user"></span>
-                    My Profile
-                  </a>
-                </li>
-                <li>
-                  <a class="<%= yield :notifications_active %>" href="#">
-                    <span class="ti-bolt"></span>
-                    Notifications
-                    <span class="notinumber">#</span>
-                  </a>
-                </li>
-              </ul>
-              <h4>Repository</h4>
-              <ul class="lest item">
-                <li>
-                  <a class="<%= yield :repository_active %>" href="<%= document_spaces_path %>">
-                    <span class="ti-folder"></span>
-                    My Guru Drive
-                  </a>
-                </li>
-              </ul>
-              <ul class="lest">
-                <li>
-                  <%= link_to(destroy_user_session_path, method: :delete) do %>
-                    <span class="ti-filter"></span>
-                    Log Out
-                  <% end %>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-9 col-sm-9 col-xs-12">
+        <div class="col-md-12 col-sm-12 col-xs-12">
           <% if !flash[:notice].blank? %>
-            <div class = "alert alert-info">
+            <div style="color:black;" class = "alert alert-warning alert-dismissible fade in">
                <%= flash[:notice] %>
+              <a href="#" class="pull-right" data-dismiss="alert" aria-label="close">&times;</a>
             </div>
          <% end %>
-
-
-
          <%= render 'form', document_space: @document_space %>
-
-
-         <h1>My Guru Drive</h1>
-
-
-         <table class = "table table-bordered table-striped">
-            <thead>.
-               <tr>
-                  <th>Title</th>
-                  <th> </th>
-               </tr>
-            </thead>
-            
-            <tbody>
+<br/>
+              <% if @document_spaces.any? %>
                <% @document_spaces.each do |document_space| %>
-                  
-                  <tr>
-                     <td>
                         <a href="<%= document_space_path(document_space.id)%>">
-                           <%= document_space.title %>
-                        </a> 
-                     </td>
-                     <td><%= button_to "Delete",  document_space, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete #{document_space.title}?" %></td>
-                  </tr>
-                  
+                          <div style="" class="col-md-3 col-sm-3 col-xs-12 f-category">
+                            <%= button_to "X",  document_space, method: :delete,style: "font-size:15px;border:none;background-color:transparent;color:#FF4F57;" ,class: "pull-right", confirm: "Are you sure that you wish to delete #{document_space.title}?" %>
+                            <div class="icon">
+                              <i class="ti-folder"></i>
+                            </div>
+                            <div style="word-wrap:break-word;" class="">
+                              <%= document_space.title %>
+                            </div>
+                            <span class="badge"><%= document_space.documents.count %> Files</span>
+                          </div>
+                        </a>
+
                <% end %>
-            </tbody>
-            
-         </table>
+            <% else %>
+          <h3>No Folders yet</h3>
+            <% end %>
 
         </div>
       </div>
-    </div>
   </div>
-
 <% end %>
+<% parent_layout 'pages/dashboard' %>
