@@ -48,21 +48,26 @@ class ApplicationsController < ApplicationController
     @third = Job.find(params[:job_id])
 
 
+    faculty.jobs << job
     #send mail
     #
-    UserMailer.application_notification(@faculty,@test,@third).deliver
-    faculty.jobs << job
-    #@application = Application.new(:faculty => faculty, :job => job)
-    #@application.save
-    #respond_to do |format|
-    #if @application.save
-    #format.html { redirect_to @application, notice: 'Application was successfully created.' }
-    #format.json { render :show, status: :created, location: @application }
-    #else
-    #format.html { render :new }
-    #format.json { render json: @application.errors, status: :unprocessable_entity }
-    #end
-    #end
+    begin
+      UserMailer.application_notification(@faculty, @test, @third).deliver
+        #@application = Application.new(:faculty => faculty, :job => job)
+        #@application.save
+        #respond_to do |format|
+        #if @application.save
+        #format.html { redirect_to @application, notice: 'Application was successfully created.' }
+        #format.json { render :show, status: :created, location: @application }
+        #else
+        #format.html { render :new }
+        #format.json { render json: @application.errors, status: :unprocessable_entity }
+        #end
+        #end
+    rescue
+
+    end
+
     redirect_back(fallback_location: jobs_path)
   end
 
