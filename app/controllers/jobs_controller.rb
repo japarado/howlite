@@ -7,13 +7,13 @@ class JobsController < ApplicationController
     #@jobs = Job.all
     @jobs = Job.paginate(:page => params[:page], :per_page => 5).order(updated_at: :desc)
 
-    if search_params[:title] != nil
+    if search_params[:title] != nil && search_params[:title] != ''
       @jobs = @jobs.term(search_params[:title])
     end
-    if search_params[:salary] != nil
+    if search_params[:salary] != nil && search_params[:salary] != ''
       @jobs = @jobs.salary(search_params[:salary])
     end
-    if search_params[:job_type] != nil
+    if search_params[:job_type] != nil && search_params[:job_type] != ''
       @jobs = @jobs.job_type(search_params[:job_type])
     end
 

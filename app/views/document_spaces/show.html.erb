@@ -17,7 +17,7 @@
           </div>
           <br/>
           <%= form_for @document, html: {multipart: true} do |form| %>
-            <%= form.file_field :name, required: true %>
+            <%= form.file_field :attachment, required: true %>
             <%= form.hidden_field :document_space_id, value: @document_space.id %>
             <%= form.submit "Upload", class: "" %>
           <% end %>

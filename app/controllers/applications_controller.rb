@@ -50,6 +50,7 @@ class ApplicationsController < ApplicationController
 
     #send mail
     #
+    begin
     UserMailer.application_notification(@faculty,@test,@third).deliver
     faculty.jobs << job
     #@application = Application.new(:faculty => faculty, :job => job)
@@ -63,6 +64,10 @@ class ApplicationsController < ApplicationController
     #format.json { render json: @application.errors, status: :unprocessable_entity }
     #end
     #end
+    rescue
+      faculty.jobs << job
+    end
+
     redirect_back(fallback_location: jobs_path)
   end
 
