@@ -1,31 +1,31 @@
 <section class="find-job section">
   <div class="container">
-
+    <br/>
+  <div class="row">
     <%= form_for @job, method: :get ,  html: { multipart: true } do |form| %>
+    <div class="col-md-5">
+      <%= form.text_field :title,{placeholder: "Search",:class=>'form-control'} %>
+    </div>
+      <div class="col-md-3">
+        <div class="search-category-container">
+      <%= form.select(:job_type,[['Part Time', 'PT'],['Full Time', 'FT']],{include_blank: 'Job Type'},{:class => 'dropdown-product selectpicker'}) %>
 
-      <%= form.text_field :title, placeholder: "Search" %>
+        </div>
+      </div>
 
-      <%= form.select(:job_type) do %>
-        <option disabled selected>Job Type</option>
-        <% [['All Types', ''], ['Part Time', 'PT'],['Full Time', 'FT']].each do |c| -%>
-          <%= content_tag(:option, c.first, value: c.last) %>
-        <% end %>
-      <% end %>
+      <div class="col-md-3">
+        <div class="search-category-container">
+      <%= form.select(:salary,[['>20000', "20000"], ['>30000', "30000"]],{include_blank: 'Salary'},{:class=>'dropdown-product selectpicker'}) %>
+        </div>
+        </div>
 
-
-      <%= form.select(:salary) do %>
-        <option disabled selected>Salary</option>
-        <% [['>20000', "20000"], ['>30000', "30000"]].each do |c| -%>
-          <%= content_tag(:option, c.first, value: c.last) %>
-        <% end %>
-      <% end %>
-
-
+      <div class="col-md-1">
       <%= button_tag( :class => "btn btn-primary") do %>
         <i class="fa fa-search" aria-hidden="true"></i>
       <% end %>
+      </div>
     <% end %>
-
+  </div>
 
     <br/>
     <div class="row">
@@ -63,6 +63,7 @@
                                         <i class="ti-location-pin"></i><%= job.hr.user.profile.street_address %>
                       , <%= job.hr.user.profile.city %>
                                       </span>
+                    <span><i class="ti-money"></i><%= job.salary %></span>
                     <br/>
                   </div>
                 </div>
