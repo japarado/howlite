@@ -11,29 +11,51 @@
     <% @applications.each do |application| %>
       <% application.each do |job, employees| %>
         <% employees.each do |employee| %>
-          <%= job.title %> - <%= job.hr.user.profile.street_address %> - <a href="<%= profile_path(employee.user) %>"><%= employee.user.name %></a><br/>
+          <div class="container">
+          <div class="box col-md-12">
+            <div class="row">
+              <div class="col-md-1">
+                <p style="margin-bottom: 15px">
+                  <b style="font-size: 20px;">#<%= job.id %></b>
+                </p>
+                <a target="_blank" href="#">
+                  <span class="ti-envelope" style="font-size: 40px" title="Resume"></span>
+                </a>
+              </div>
+              <div class="col-md-2">
+                <img src="<%= employee.user.profile.picture %>" height="80" style="border-radius: 8px;"/>
+              </div>
+              <div class="col-md-5">
+                <b style="font-size: 20px"><%= employee.user.name %></b><br/>
+                Born on
+                <b style="font-size: 15px"><%= employee.user.profile.dob %></b><br/>
+                Lives in <b style="font-size:14px"><%= employee.user.profile.street_address %>,</b><br/>
+                <b style="font-size: 14px"><%= employee.user.profile.city %> City</b><br/>
+                Contact No. <b style="font-size: 14px"><%= employee.user.profile.contact_number %></b>
+              </div>
+              <div class="col-md-4">
+<!--                <b style="font-size: 14px">Date Applied:</b><br/>
+                <b style="font-size: 14px">{{date('F j, Y \a\t g:i a',
+                  strtotime($applicant->pivot->created_at))}}</b><br/>
+                {{-- <b style="font-size: 12px">{{date('g:i a', strtotime($applicant->pivot->created_at))}}</b>--}}
+                <br/>-->
+                <a href="<%= profile_path(employee.user) %>"
+                   class="btn btn-common btn-block">
+                  View User Profile
+                </a>
+              </div>
+            </div>
+            <hr/>
+            <p style="font-size:16px;">
+              Applied for Job:
+              <a href="<%= job_path(job) %>" target="_blank">
+                <b><%= job.title %></b>
+              </a>
+            </p>
+          </div>
+          </div>
         <% end %>
       <% end %>
     <% end %>
   <% end %>
-  <!--<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%# @applications.each do |application| %>
-      <tr>
-        <td><%#= application.user.name %></td>
-        <td><%#= link_to 'Show', application %></td>
-        <td><%#= link_to 'Edit', edit_application_path(application) %></td>
-        <td><%#= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <%# end %>
-  </tbody>
-</table>
-
-<br>-->
 <% end %>
