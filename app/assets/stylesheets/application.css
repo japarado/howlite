@@ -29,4 +29,5 @@
  *= require ./vendor/dropzone.min
  *= require ./css/colors/funpro
  *= require ./self/css/custom
+ *= require social-share-button
  */
