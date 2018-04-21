@@ -10,9 +10,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-   def create
+   #def create
      super
-   end
+     #user = User.last
+     #if user.user_type == "FACULTY"
+     #  Faculty.create(
+     #     :user_id => user.id
+     #  )
+     #else
+     #  Hr.create(
+     #        :user_id => user.id
+     #  )
+     #end
+   #end
 
   # GET /resource/edit
   # def edit

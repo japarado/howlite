@@ -36,6 +36,16 @@ class ProfilesController < ApplicationController
 
     respond_to do |format|
       if @profile.save
+        user = User.last
+        if user.user_type == "FACULTY"
+          Faculty.create(
+              :user_id => user.id
+          )
+        else
+          Hr.create(
+              :user_id => user.id
+          )
+        end
         format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @profile }
       else
