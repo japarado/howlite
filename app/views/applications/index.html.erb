@@ -1,9 +1,5 @@
-<% content_for :title do %>- Applications
-<% end %>
-<% content_for :current_header do %>Job Applications
-<% end %>
 
-<% content_for :content do %>
+<% content_for :dashboard_content do %>
 
   <% if @applications.count < 1 %>
     <h1>No Applications</h1>
@@ -60,3 +56,4 @@
     </div>
   <% end %>
 <% end %>
+<% parent_layout 'pages/dashboard' %>
