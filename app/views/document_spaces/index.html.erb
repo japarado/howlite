@@ -1,0 +1,39 @@
+<% content_for :dashboard_content do %>
+  <div class="job-alerts-item candidates">
+    <h3 class="alerts-title">My Guru Drive</h3>
+    <hr/>
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <% if !flash[:notice].blank? %>
+            <div style="color:black;" class = "alert alert-warning alert-dismissible fade in">
+               <%= flash[:notice] %>
+              <a href="#" class="pull-right" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+         <% end %>
+         <%= render 'form', document_space: @document_space %>
+<br/>
+              <% if @document_spaces.any? %>
+               <% @document_spaces.each do |document_space| %>
+                        <a href="<%= document_space_path(document_space.id)%>">
+                          <div style="" class="col-md-3 col-sm-3 col-xs-12 f-category">
+                            <%= button_to "X",  document_space, method: :delete,style: "font-size:15px;border:none;background-color:transparent;color:#FF4F57;" ,class: "pull-right", confirm: "Are you sure that you wish to delete #{document_space.title}?" %>
+                            <div class="icon">
+                              <i class="ti-folder"></i>
+                            </div>
+                            <div style="word-wrap:break-word;" class="">
+                              <%= document_space.title %>
+                            </div>
+                            <span class="badge"><%= document_space.documents.count %> Files</span>
+                          </div>
+                        </a>
+
+               <% end %>
+            <% else %>
+          <h3>No Folders yet</h3>
+            <% end %>
+
+        </div>
+      </div>
+  </div>
+<% end %>
+<% parent_layout 'pages/dashboard' %>

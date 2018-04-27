@@ -1,0 +1,26 @@
+<%= form_with(model: document_space, local: true) do |form| %>
+  <% if document_space.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document_space.errors.count, "error") %> prohibited this document_space from being saved:</h2>
+
+      <ul>
+      <% document_space.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <%= form_for @document_space, html: { multipart: true } do |form| %>
+
+    <%= form.text_field :title, placeholder: "Add Folder" %>
+
+      <%= button_tag( :class => "") do %>
+        Create
+      <% end %>
+
+  <% end %>
+
+
+<% end %>

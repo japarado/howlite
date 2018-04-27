@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Howlite</title>
+    <title>Instruu <%= yield :title %></title>
     <%= csrf_meta_tags %>
+    <link type="image/x-icon" href="/favicon.ico" rel="icon" />
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+  <div class="header">
+    <%= render 'inc/navbar' %>
+    <section id="intro-bg">
+      <%= yield :tagline %>
+    </section>
+  </div>
+
+    <%= yield :content %>
+
+  <footer>
+    <div id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p>All Rights reserved &copy; 2017 - Template Designed & Developed by <a rel="nofollow"
+                                                                                     href="http://graygrids.com">GrayGrids</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="#" class="back-to-top">
+    <i class="ti-arrow-up"></i>
+  </a>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

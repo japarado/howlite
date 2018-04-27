@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Hrs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hrs.each do |hr| %>
+      <tr>
+        <td><%= link_to 'Show', hr %></td>
+        <td><%= link_to 'Edit', edit_hr_path(hr) %></td>
+        <td><%= link_to 'Destroy', hr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Hr', new_hr_path %>

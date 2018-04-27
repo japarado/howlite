@@ -1,0 +1,98 @@
+<% content_for :title do %>- Job Details
+<% end %>
+<% content_for :active_jobs do %>active
+<% end %>
+<% content_for :current_header do %>Job Details
+<% end %>
+
+<% content_for :content do %>
+  <%= render 'inc/header' %>
+
+
+  <section class="job-detail section">
+    <br/>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9 col-sm-8">
+          <div class="content-area">
+            <a onclick="goBack()" href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go
+              Back</a>
+            <h2 class="medium-title">Job Information</h2>
+            <div class="box">
+              <div class="text-left">
+                <h3><%= @job.title %></h3>
+                <p>
+                  <% if @job.job_type == 'FT' %>
+                    <span class="full-time">Full-Time</span>
+                  <% elsif @job.job_type == 'PT' %>
+                    <span class="part-time">Part-Time</span>
+                  <% end %>
+                </p>
+                <p>
+                  <%= social_share_button_tag(@job.title) %>
+                </p>
+
+                <!--
+                <div class="meta">
+                                    <span><i class="ti-location-pin"></i>{{$job->hr->user->profile->street_address}}
+                                        , {{$job->hr->user->profile->city}}</span>
+
+                </div>
+                <div class="meta">
+                  <span><i class="ti-mobile"></i>{{$job->hr->user->profile->contact_number}}</span>
+                </div>
+                -->
+                <strong class="price"><i class="fa fa-money"></i>P<%= @job.salary %> per
+                  <% if @job.job_type == 'FT' %>
+                    Month
+                  <% elsif @job.job_type == 'PT' %>
+                    Hour
+                  <% end %></strong>
+                <!--<a href="#" class="btn btn-common btn-sm">Apply for this Job</a>-->
+
+                <% if user_signed_in? %>
+                  <% if current_user.user_type == 'FACULTY' %>
+                    <% if @job.faculties.include? current_user.faculty %>
+                      <p class="alert alert-success">You've already applied for this job</p>
+                    <% else %>
+                      <%= render 'applications/apply-form' %>
+                    <% end %>
+                  <% end %>
+                  <% if current_user.user_type == 'HR' %>
+                    <% if @job.hr == current_user.hr %>
+                      <a href="<%= edit_job_path(@job) %>" class="btn btn-primary btn-sm">Update Job</a>
+                      <a href="<%= jobs_path %>" class="btn btn-success btn-sm">Manage Jobs</a>
+                    <% end %>
+                  <% end %>
+                <% end %>
+
+
+                <!--<a href="#" class="btn btn-common btn-sm">Login to Apply</a>-->
+
+                <!--<p class="alert alert-success">You've already applied for this job</p>-->
+                <!--
+                <a href="#" class="btn btn-primary btn-sm">Update
+                  Job</a>
+                <a href="#" class="btn btn-success btn-sm">Manage
+                  Jobs</a>
+                -->
+              </div>
+              <div class="clearfix">
+                <h4>Overview</h4>
+                <p>
+                  <%= @job.desc %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-4">
+
+          <%# render 'inc/school-details' %>
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+<% end %>

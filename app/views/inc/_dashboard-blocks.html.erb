@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+
+    <a href="<%= profile_path(current_user) %>">
+      <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+        <div class="icon">
+          <i class="ti-user"></i>
+        </div>
+        <h3>Profile</h3>
+      </div>
+    </a>
+    <% if current_user.faculty %>
+    <a href="<%= document_spaces_path %>">
+      <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+        <div class="icon">
+          <i class="ti-folder"></i>
+        </div>
+        <h3>My Guru Drive</h3>
+      </div>
+    </a>
+    <% elsif current_user.hr %>
+      <a href="<%= applications_path %>">
+        <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+          <div class="icon">
+            <i class="ti-bookmark"></i>
+          </div>
+          <h3>Applications</h3>
+        </div>
+      </a>
+    <% end %>
+    <%= link_to(destroy_user_session_path,method: :delete) do %>
+      <div class="col-md-3 col-sm-3 col-xs-12 f-category">
+        <div class="icon">
+          <i class="ti-filter"></i>
+        </div>
+        <h3>Log Out</h3>
+      </div>
+      <% end %>
+  </div>
+</div>

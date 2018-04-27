@@ -22,3 +22,7 @@
 
 .byebug_history
 /.idea/
+/db/schema.rb
+
+
+/public/uploads

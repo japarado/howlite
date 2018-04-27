@@ -1,0 +1,26 @@
+<% content_for :title do %>- Home<% end %>
+<% content_for :active_home do %>active<% end %>
+<% content_for :tagline do %>
+  <div class="search-container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 style="text-align: center">More Opportunities</h1>
+        <br/>
+        <h1 style="text-align: center">for Filipino Instructors</h1>
+      </div>
+    </div>
+    <div class="col-md-4 col-md-offset-4">
+      <br/>
+      <div class="center">
+        <a href="<%= jobs_path %>" class="btn btn-success">Find Jobs</a>
+
+        <% if !user_session %>
+        <a href="<%= new_user_registration_path %>" class="btn btn-primary">Register for Free</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+<% content_for :content do %>
+
+<% end %>

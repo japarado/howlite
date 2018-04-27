@@ -1,0 +1,23 @@
+
+<% content_for :dashboard_content do %>
+  <a href="<%= edit_profile_path(@profile) %>" class="btn btn-primary">Edit Profile</a>
+  <br/><br/>
+  <div class="inner-box my-resume">
+    <div class="row">
+      <div class="thumb col-md-3">
+        <img class="img-rounded center-block" height="" width="128" src="<%= @profile.picture %>" alt="">
+      </div>
+      <div class="col-md-9">
+        <h3><%= @profile.user.name %></h3>
+        <p><span class="address"><i class="ti-home"></i> <%= @profile.street_address %></span></p>
+        <p><span class="address"><i class="ti-location-pin"></i> <%= @profile.city %>, <%= @profile.region %></span></p>
+        <p><span class="address"><i class="ti-mobile"></i> +<%= @profile.contact_number %></span></p>
+      </div>
+    </div>
+    <div class="about-me item">
+      <h3>About</h3>
+      <p><%= @profile.description %></p>
+    </div>
+  </div>
+<% end %>
+<%= parent_layout 'pages/dashboard' %>

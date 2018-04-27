@@ -10,6 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require turbolinks
-//= require_tree .
+
+//=
+//= require ./js/jquery-min
+//= require ./js/bootstrap.min
+//= require ./js/material.min
+//= require ./js/material-kit
+//= require ./js/jquery.parallax
+//= require ./js/owl.carousel.min
+//= require ./js/jquery.slicknav
+//= require ./js/main
+//= require ./js/jquery.counterup.min
+//= require ./js/waypoints.min
+//= require ./js/jasny-bootstrap.min
+//= require ./js/bootstrap-select.min
+//= require ./js/form-validator.min
+//= require ./js/contact-form-script
+//= require ./vendor/dropzone
+//= require ./vendor/bootstrap-confirmation.min
+//= require ./self/custom
+//= require social-share-button
+

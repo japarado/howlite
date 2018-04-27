@@ -1,0 +1,56 @@
+<% content_for :dashboard_content do %>
+  <a onclick="goBack()" href="#" class="btn btn-primary"><i class="ti-arrow-left"></i> Go Back</a>
+
+  <% if !flash[:notice].blank? %>
+    <div class="alert alert-info">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <section class="section job-details well">
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-8">
+        <div class="content-area">
+          <div class="row">
+            <div class="col-md-8">
+              <h2 class="medium-title"><%= @document_space.title %></h2>
+            </div>
+          </div>
+          <br/>
+          <%= form_for @document, html: {multipart: true} do |form| %>
+            <%= form.file_field :attachment, required: true %>
+            <%= form.hidden_field :document_space_id, value: @document_space.id %>
+            <%= form.submit "Upload", class: "" %>
+          <% end %>
+          <hr/>
+          <div class="box col-md-12">
+            <div class="row">
+              <% if @documents.any? %>
+                <% @documents.each do |document| %>
+                  <div class="col-md-3" style="height:200px;">
+                    <div class="thumbnail">
+                      <%= button_to "X", document, method: :delete, style: "font-size:15px;border:none;background-color:transparent;color:#FF4F57;", class: "pull-right", confirm: "Are you sure that you wish to delete #{document.name}?" %>
+                      <div style="height:90px;"><span
+                        style="display:inline-block;height:26%;vertical-align:middle;"></span><img
+                        width="70" style="margin:auto;display:block;"
+                        src="/img/icon/file/text.png"></div>
+                      <div class="caption">
+                        <p>
+                          <%= link_to "Download", document.attachment_url, :class => 'btn btn-sm btn-primary btn-block' %>
+                        </p>
+                        <p style="word-wrap:break-word;" title="<%= document.name %>"><%= document.name %></p>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              <% else %>
+                <h3>No Documents</h3>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<% end %>
+<% parent_layout 'pages/dashboard' %>

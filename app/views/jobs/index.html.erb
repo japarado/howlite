@@ -1,0 +1,8 @@
+<% content_for :title do %>- Job Listings<% end %>
+<% content_for :active_jobs do %>active<% end %>
+<% content_for :current_header do %>Job Listings<% end %>
+
+<% content_for :content do %>
+  <%= render 'inc/header' %>
+  <%= render 'inc/jobs' %>
+<% end %>
